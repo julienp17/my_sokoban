@@ -37,8 +37,11 @@ NAME_UT 	= 	unit_tests
 
 all: $(NAME)
 
-$(NAME):	$(OBJ) $(OBJ_M)
+$(NAME):	makelib $(OBJ) $(OBJ_M)
 	$(CC) -o $(NAME) $(OBJ) $(OBJ_M) $(CFLAGS)
+
+makelib:
+	make -C ./lib/my/ all
 
 tests_run: clean $(OBJ) $(OBJ_UT)
 	echo -e "\e[1;32mCompiling $(NAME_UT) binary... \e[0m"
@@ -49,8 +52,10 @@ tests_run: clean $(OBJ) $(OBJ_UT)
 
 clean:
 	rm -f $(OBJ)
+	make -C ./lib/my clean
 
 fclean: clean
 	rm -f $(NAME)
+	make -C ./lib/my clean
 
 re: fclean all
