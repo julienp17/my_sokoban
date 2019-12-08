@@ -27,7 +27,7 @@ CFLAGS		= 	-W -Wall -Wextra -Werror $(INC) $(LDFLAGS)
 
 DBFLAGS		=	-g -g3 -ggdb
 
-LDFLAGS 	=	-lncurses
+LDFLAGS 	=	-L./lib -lmy -lncurses
 
 LDFLAGS_UT	= 	-lcriterion -lgcov --coverage
 
