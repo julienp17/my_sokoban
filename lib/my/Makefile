@@ -10,6 +10,7 @@ CC 			= 	gcc
 SRC			=	my_putchar.c \
 				my_putstr.c  \
 				my_puterr.c  \
+				my_strcmp.c  \
 
 OBJ			=	$(SRC:.c=.o)
 
