@@ -8,16 +8,17 @@
 #ifndef USAGE_H_
     #define USAGE_H_
 
-    #define MY_EXIT_SUCCESS         0
-    #define MY_EXIT_OPTION          192
-    #define MY_EXIT_FAILURE         84
+    #define MY_EXIT_SUCCESS       0
+    #define MY_EXIT_OPTION        192
+    #define MY_EXIT_FAILURE       84
 
-    #define USAGE \
-    "Usage\n" \
-    "    ./my_sokoban map\n" \
-    "DESCRIPTION\n" \
+    #define BAD_NB_ARGS_ERR_MSG  "Incorrect numbers of arguments (must be 1)\n"
+    #define USAGE                                                              \
+    "Usage\n"                                                                  \
+    "    ./my_sokoban map\n"                                                   \
+    "DESCRIPTION\n"                                                            \
     "    map file representing the warehouse map, containing '#' for walls,\n" \
-    "        'P' for the player, 'X' for boxes, and '0' for storage locations.\n"
+    "\t'P' for the player, 'X' for boxes, and '0' for storage locations.\n"
 
     int check_args(int ac, char **av);
 #endif
