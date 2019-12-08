@@ -13,6 +13,7 @@ SRC			=	my_putchar.c         \
 				my_strcmp.c          \
 				my_count_char.c      \
 				my_count_until_sep.c \
+				my_strlen.c          \
 
 OBJ			=	$(SRC:.c=.o)
 
