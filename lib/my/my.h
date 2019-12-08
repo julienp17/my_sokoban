@@ -12,5 +12,5 @@
     void my_putstr(char *);
     void my_puterr(char *);
 
-    int my_strcmp(char const *s1, char const *s2)
+    int my_strcmp(char const *s1, char const *s2);
 #endif
