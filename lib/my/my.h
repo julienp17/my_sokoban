@@ -10,4 +10,5 @@
 
     void my_putchar(char);
     void my_putstr(char *);
+    void my_puterr(char *);
 #endif
