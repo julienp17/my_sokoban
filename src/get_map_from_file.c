@@ -13,13 +13,13 @@
 #include <sys/stat.h>
 #include "file_manipulation.h"
 #include "my.h"
-#include <stdio.h>
+#include "map.h"
 
 char **get_map_from_file(char *filepath)
 {
     char *file_buffer = get_file_buffer(filepath);
 
-    if (!file_buffer || !map_is_valid(file_buffer))
+    if (!file_buffer || !is_valid_map(file_buffer))
         return (NULL);
     return (create_map_from_file_buffer(file_buffer));
 }
@@ -72,7 +72,7 @@ unsigned int get_file_size(char const *filepath)
     return (stats.st_size);
 }
 
-bool map_is_valid(char const *file_buffer)
+bool is_valid_map(char const *file_buffer)
 {
     char const allowed_chars[] = "\n #XOP";
     unsigned int len = my_strlen(allowed_chars);
