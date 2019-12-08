@@ -7,7 +7,7 @@
 
 CC 			= 	gcc
 
-SRC			=
+SRC			=	my_putchar.c
 
 OBJ			=	$(SRC:.c=.o)
 
