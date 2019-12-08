@@ -13,6 +13,7 @@
 #include <sys/stat.h>
 #include "file_manipulation.h"
 #include "my.h"
+#include <stdio.h>
 
 char **get_map_from_file(char *filepath)
 {
@@ -25,8 +26,8 @@ char **get_map_from_file(char *filepath)
 
 char **create_map_from_file_buffer(char *file_buffer)
 {
-    unsigned int nb_cols = my_count_char(file_buffer, '\n');
-    unsigned int nb_rows = my_count_until_sep(file_buffer, '\n');
+    unsigned int nb_cols = my_count_until_sep(file_buffer, '\n');
+    unsigned int nb_rows = my_count_char(file_buffer, '\n') + 1;
     char **map = malloc(sizeof(char*) * (nb_rows + 1));
     unsigned int i = 0;
     unsigned int j = 0;
@@ -73,7 +74,7 @@ unsigned int get_file_size(char const *filepath)
 
 bool map_is_valid(char const *file_buffer)
 {
-    char const allowed_chars[] = "\n#XOP";
+    char const allowed_chars[] = "\n #XOP";
     unsigned int len = my_strlen(allowed_chars);
     unsigned int i = 0;
     unsigned int j = 0;
