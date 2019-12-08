@@ -8,6 +8,9 @@
 #include <stddef.h>
 #include "usage.h"
 #include "file_manipulation.h"
+#include <stdio.h>
+
+void play_game(char **map);
 
 int main(int ac, char **av)
 {
@@ -20,6 +23,6 @@ int main(int ac, char **av)
     else if (exit_code == MY_EXIT_FAILURE)
         return (MY_EXIT_FAILURE);
     map = get_map_from_file(av[1]);
-    (void)map;
+    play_game(map);
     return (MY_EXIT_SUCCESS);
 }
