@@ -8,14 +8,14 @@
 #include <stddef.h>
 #include "usage.h"
 #include "file_manipulation.h"
-#include <stdio.h>
+#include "map.h"
 
-void play_game(char **map);
+void play_game(map_t *map);
 
 int main(int ac, char **av)
 {
     int exit_code = 0;
-    char **map = NULL;
+    map_t *map = NULL;
 
     exit_code = check_args(ac, av);
     if (exit_code == MY_EXIT_OPTION)

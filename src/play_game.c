@@ -7,10 +7,10 @@
 
 #include <stdbool.h>
 #include <curses.h>
-
 #include <string.h>
+#include "map.h"
 
-void play_game(char **map)
+void play_game(map_t *map)
 {
     int row = 0;
     int col = 0;
@@ -32,16 +32,16 @@ void play_game(char **map)
     endwin();
 }
 
-void game_loop(char **map)
+void game_loop(map_t *map)
 {
     (void)map;
     return;
 }
 
-void display_window(char **map)
+void display_window(map_t *map)
 {
-    for (unsigned int i = 0 ; map[i] ; i++) {
-        addstr(map[i]);
+    for (unsigned int i = 0 ; map->map[i] ; i++) {
+        addstr(map->map[i]);
         addstr("\n");
     }
     refresh();

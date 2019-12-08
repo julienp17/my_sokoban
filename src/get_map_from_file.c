@@ -15,7 +15,7 @@
 #include "my.h"
 #include "map.h"
 
-char **get_map_from_file(char *filepath)
+map_t *get_map_from_file(char *filepath)
 {
     char *file_buffer = get_file_buffer(filepath);
 
@@ -24,23 +24,24 @@ char **get_map_from_file(char *filepath)
     return (create_map_from_file_buffer(file_buffer));
 }
 
-char **create_map_from_file_buffer(char *file_buffer)
+map_t *create_map_from_file_buffer(char *file_buffer)
 {
-    unsigned int nb_cols = my_count_until_sep(file_buffer, '\n');
-    unsigned int nb_rows = my_count_char(file_buffer, '\n') + 1;
-    char **map = malloc(sizeof(char*) * (nb_rows + 1));
+    map_t *map = malloc(sizeof(map_t *));
+    map->nb_cols = my_count_until_sep(file_buffer, '\n');
+    map->nb_rows = my_count_char(file_buffer, '\n') + 1;
+    map->map = malloc(sizeof(char*) * (map->nb_rows + 1));
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int k = 0;
 
-    for (i = 0 ; i < nb_rows ; i++, k++) {
-        map[i] = malloc(sizeof(char) * (nb_cols + 1));
-        for (j = 0 ; j < nb_cols ; j++, k++) {
-            map[i][j] = file_buffer[k];
+    for (i = 0 ; i < map->nb_rows ; i++, k++) {
+        map->map[i] = malloc(sizeof(char) * (map->nb_cols + 1));
+        for (j = 0 ; j < map->nb_cols ; j++, k++) {
+            map->map[i][j] = file_buffer[k];
         }
-        map[i][j] = '\0';
+        map->map[i][j] = '\0';
     }
-    map[i] = NULL;
+    map->map[i] = NULL;
     return (map);
 }
 
