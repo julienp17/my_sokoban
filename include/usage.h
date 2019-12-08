@@ -9,5 +9,6 @@
     #define USAGE_H_
 
     #define MY_EXIT_SUCCESS         0
+    #define MY_EXIT_OPTION          192
     #define MY_EXIT_FAILURE         84
 #endif
