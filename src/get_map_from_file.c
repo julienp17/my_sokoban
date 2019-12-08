@@ -74,14 +74,15 @@ unsigned int get_file_size(char const *filepath)
 bool map_is_valid(char const *file_buffer)
 {
     char const allowed_chars[] = "\n#XOP";
+    unsigned int len = my_strlen(allowed_chars);
     unsigned int i = 0;
     unsigned int j = 0;
 
     while (file_buffer[i]) {
         j = 0;
-        while (allowed_chars[j] && file_buffer[i] == allowed_chars[j])
+        while (j < len && file_buffer[i] != allowed_chars[j])
             j++;
-        if (file_buffer[i] != allowed_chars[j])
+        if (j >= len)
             return (false);
         i++;
     }
