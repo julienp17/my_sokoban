@@ -19,7 +19,7 @@ SRC_F 		=	usage.c
 SRC_UT   	=	$(addprefix $(SRC_UT_D), $(SRC_UT_F))
 OBJ_UT 	 	=	$(SRC_UT:.c=.o)
 SRC_UT_D 	= 	tests/
-SRC_UT_F 	=
+SRC_UT_F 	=	test_check_args.c \
 
 INC			= 	-I./include/
 
