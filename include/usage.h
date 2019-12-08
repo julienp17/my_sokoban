@@ -18,4 +18,6 @@
     "DESCRIPTION\n" \
     "    map file representing the warehouse map, containing '#' for walls,\n" \
     "        'P' for the player, 'X' for boxes, and '0' for storage locations.\n"
+
+    int check_args(int ac, char **av);
 #endif
