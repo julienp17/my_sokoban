@@ -55,10 +55,12 @@ tests_run: clean $(OBJ) $(OBJ_UT)
 
 clean:
 	rm -f $(OBJ)
+	rm -f *.gc*
 	make -C ./lib/my clean
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(NAME_UT)
 	make -C ./lib/my clean
 
 re: fclean all
