@@ -3,4 +3,6 @@ image: epitechcontent/epitest-docker
 compile:
   script:
     - make
+    - make tests_run
+    - gcovr -e tests/
     - make re
