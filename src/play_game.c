@@ -13,6 +13,7 @@
 #include "my_sokoban.h"
 #include "pos.h"
 #include "move.h"
+#include "usage.h"
 
 void play_game(map_t *map)
 {
@@ -37,9 +38,15 @@ void game_loop(map_t *map)
 
     map->map[player_pos->y][player_pos->x] = SPACE_CHAR;
     while (key != 'q' && key != 27) {
-        display_map(map, player_pos);
-        key = getch();
-        check_player_move(key, map, player_pos);
+        if (terminal_is_too_small(map)) {
+            clear();
+            display_center_message(TERM_TOO_SMALL_MSG);
+            key = getch();
+        } else {
+            display_map(map, player_pos);
+            key = getch();
+            check_player_move(key, map, player_pos);
+        }
     }
     free(player_pos);
 }
