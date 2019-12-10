@@ -35,22 +35,22 @@ void init_game(void)
 void game_loop(map_t *map)
 {
     pos_t *player_pos = get_initial_player_pos(map->map, PLAYER_CHAR);
-    int ch = 0;
+    int key = 0;
 
     map->map[player_pos->y][player_pos->x] = SPACE_CHAR;
-    while (ch != 'q' && ch != 27) {
+    while (key != 'q' && key != 27) {
         display_window(map);
         move(player_pos->y, player_pos->x);
         addch(PLAYER_CHAR);
         move(player_pos->y, player_pos->x);
-        ch = getch();
-        if (ch == KEY_LEFT && player_pos->x > 0)
+        key = getch();
+        if (key == KEY_LEFT && player_pos->x > 0)
             player_pos->x--;
-        if (ch == KEY_RIGHT && player_pos->x < map->nb_cols - 1)
+        if (key == KEY_RIGHT && player_pos->x < map->nb_cols - 1)
             player_pos->x++;
-        if (ch == KEY_DOWN && player_pos->y < map->nb_rows - 1)
+        if (key == KEY_DOWN && player_pos->y < map->nb_rows - 1)
             player_pos->y++;
-        if (ch == KEY_UP && player_pos->y > 0)
+        if (key == KEY_UP && player_pos->y > 0)
             player_pos->y--;
     }
     return;
