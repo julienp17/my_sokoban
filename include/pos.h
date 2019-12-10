@@ -9,8 +9,7 @@
     #define POS_H_
 
     typedef struct position {
-        int x;
-        int y;
+        unsigned int x;
+        unsigned int y;
     } pos_t;
-
 #endif
