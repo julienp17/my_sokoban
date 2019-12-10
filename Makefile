@@ -15,8 +15,12 @@ SRC			= 	$(addprefix $(SRC_D), $(SRC_F))
 OBJ 		= 	$(SRC:.c=.o)
 SRC_D 		= 	src/
 SRC_F 		=	usage.c \
-				get_map_from_file.c \
 				play_game.c \
+				display.c \
+				map/get_map_from_file.c \
+				movements/get_move.c \
+				movements/move_player.c \
+				movements/check_move.c
 
 SRC_UT   	=	$(addprefix $(SRC_UT_D), $(SRC_UT_F))
 OBJ_UT 	 	=	$(SRC_UT:.c=.o)
@@ -26,7 +30,7 @@ SRC_UT_F 	=	test_check_args.c \
 
 INC			= 	-I./include/
 
-CFLAGS		= 	-W -Wall -Wextra -Werror $(INC) $(LDFLAGS)
+CFLAGS		= 	-W -Wall -Wextra -Werror $(INC) $(LDFLAGS) $(DBFLAGS)
 
 DBFLAGS		=	-g -g3 -ggdb
 
@@ -41,7 +45,7 @@ NAME_UT 	= 	unit_tests
 all: $(NAME)
 
 $(NAME):	makelib $(OBJ) $(OBJ_M)
-	$(CC) -o $(NAME) $(OBJ) $(OBJ_M) $(CFLAGS)
+	$(CC) -o $(NAME) $(OBJ) $(OBJ_M) $(CFLAGS) $(DBFLAGS)
 
 makelib:
 	make -C ./lib/my/ all

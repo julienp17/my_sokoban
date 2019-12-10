@@ -9,8 +9,9 @@
     #define POS_H_
 
     typedef struct position {
-        int x;
-        int y;
+        unsigned int x;
+        unsigned int y;
     } pos_t;
 
+    pos_t *get_initial_player_pos(char **map, char player_symbol);
 #endif

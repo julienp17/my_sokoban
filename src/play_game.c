@@ -8,21 +8,17 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <curses.h>
+#include "display.h"
 #include "map.h"
 #include "my_sokoban.h"
 #include "pos.h"
-
-void init_game(void);
-void display_window(map_t *map);
-void game_loop(map_t *map, pos_t *player_pos);
-pos_t *get_initial_player_pos(char **map, char player_symbol);
+#include "move.h"
+#include "usage.h"
 
 void play_game(map_t *map)
 {
-    pos_t *player_pos = get_initial_player_pos(map->map, PLAYER_CHAR);
-
     init_game();
-    game_loop(map, player_pos);
+    game_loop(map);
     endwin();
 }
 
@@ -32,44 +28,25 @@ void init_game(void)
     noecho();
     cbreak();
     keypad(stdscr, TRUE);
+    curs_set(0);
 }
 
-pos_t *get_initial_player_pos(char **map, char player_symbol)
+void game_loop(map_t *map)
 {
-    pos_t *player_pos = malloc(sizeof(pos_t *));
+    pos_t *player_pos = get_initial_player_pos(map->map, PLAYER_CHAR);
+    int key = 0;
 
-    for (unsigned int i = 0 ; map[i] ; i++) {
-        for (unsigned int j = 0 ; map[i][j] ; j++)
-            if (map[i][j] == player_symbol) {
-                player_pos->y = i;
-                player_pos->x = j;
-            }
-    }
-    return (player_pos);
-}
-
-void game_loop(map_t *map, pos_t *player_pos)
-{
-    int ch = 0;
-
-    while (ch != 'q' && ch != 27) {
-        display_window(map);
-        ch = getch();
-        if (ch == KEY_LEFT) {
-            map->map[player_pos->y][player_pos->x] = SPACE_CHAR;
-            player_pos->x--;
-            map->map[player_pos->y][player_pos->x] = PLAYER_CHAR;
+    map->map[player_pos->y][player_pos->x] = SPACE_CHAR;
+    while (key != 'q' && key != 27) {
+        if (terminal_is_too_small(map)) {
+            clear();
+            display_center_message(TERM_TOO_SMALL_MSG);
+            key = getch();
+        } else {
+            display_map(map, player_pos);
+            key = getch();
+            check_player_move(key, map, player_pos);
         }
-        clear();
     }
-    return;
-}
-
-void display_window(map_t *map)
-{
-    for (unsigned int i = 0 ; map->map[i] ; i++) {
-        addstr(map->map[i]);
-        addstr("\n");
-    }
-    refresh();
+    free(player_pos);
 }

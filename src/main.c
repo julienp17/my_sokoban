@@ -6,11 +6,11 @@
 */
 
 #include <stddef.h>
+#include <stdlib.h>
 #include "usage.h"
 #include "file_manipulation.h"
 #include "map.h"
-
-void play_game(map_t *map);
+#include "my_sokoban.h"
 
 int main(int ac, char **av)
 {
@@ -22,7 +22,9 @@ int main(int ac, char **av)
         return (MY_EXIT_SUCCESS);
     else if (exit_code == MY_EXIT_FAILURE)
         return (MY_EXIT_FAILURE);
-    map = get_map_from_file(av[1]);
+    if ((map = get_map_from_file(av[1])) == NULL)
+        return (MY_EXIT_FAILURE);
     play_game(map);
+    free(map);
     return (MY_EXIT_SUCCESS);
 }
