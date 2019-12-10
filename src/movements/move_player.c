@@ -36,9 +36,6 @@ void check_player_move(int key, map_t *map, pos_t *player_pos)
     if (!is_movement_key(key))
         return;
     direction = get_move_by_key(key);
-    // mvprintw(0, 0, "x_offset = %d\ty_offset = %d\n", direction->x_offset, direction->y_offset);
-    // refresh();
-    // clear();
     if (can_move(map, player_pos, direction)) {
         player_pos->x += direction->x_offset;
         player_pos->y += direction->y_offset;
