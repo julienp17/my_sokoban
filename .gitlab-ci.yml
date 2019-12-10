@@ -3,6 +3,7 @@ image: epitechcontent/epitest-docker
 compile:
   script:
     - make
+    - valgrind ./my_sokoban maps/map1.txt
     - make tests_run
     - gcovr -e tests/
     - make re
