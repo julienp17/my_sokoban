@@ -14,6 +14,8 @@ SRC			=	my_putchar.c         \
 				my_count_char.c      \
 				my_count_until_sep.c \
 				my_strlen.c          \
+				my_strdup_2D_array.c \
+				my_strcpy_2D_array.c \
 
 OBJ			=	$(SRC:.c=.o)
 
