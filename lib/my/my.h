@@ -14,6 +14,7 @@
 
     int my_strcmp(char const *, char const *);
     unsigned int my_count_char(char const *, char const);
+    unsigned int my_count_char_2D_array(char const **arr, char const to_count);
     unsigned int my_count_until_sep(char const *, char const);
     unsigned int my_strlen(char const *str);
 
