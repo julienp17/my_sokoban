@@ -52,7 +52,6 @@ void game_loop(map_t *map)
             player_pos->y++;
         if (ch == KEY_UP && player_pos->y > 0)
             player_pos->y--;
-        clear();
     }
     return;
 }
@@ -73,6 +72,7 @@ pos_t *get_initial_player_pos(char **map, char player_symbol)
 
 void display_window(map_t *map)
 {
+    clear();
     for (unsigned int i = 0 ; map->map[i] ; i++) {
         addstr(map->map[i]);
         addstr("\n");
