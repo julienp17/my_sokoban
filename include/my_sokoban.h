@@ -12,4 +12,8 @@
     #define PLAYER_CHAR     'P'
     #define TARGET_CHAR     'O'
     #define SPACE_CHAR      ' '
+
+    void init_game(void);
+    void display_window(map_t *map);
+    void game_loop(map_t *map);
 #endif
