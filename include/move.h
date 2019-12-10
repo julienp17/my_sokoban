@@ -17,4 +17,8 @@
         void (*movement)(pos_t *);
     } move_t;
 
+    void move_left(pos_t *pos);
+    void move_right(pos_t *pos);
+    void move_up(pos_t *pos);
+    void move_down(pos_t *pos);
 #endif
