@@ -13,6 +13,18 @@
 #include "pos.h"
 #include "move.h"
 
+void check_player_move(int key, map_t *map, pos_t *player_pos)
+{
+    move_t *direction = NULL;
+
+    if (!is_movement_key(key))
+        return;
+    direction = get_move_by_key(key);
+    if (can_move(map, player_pos, direction))
+        move_player(map->map, player_pos, direction);
+    free(direction);
+}
+
 bool can_move(map_t *map, pos_t *pos, move_t *move)
 {
     pos_t *target = malloc(sizeof(*target));

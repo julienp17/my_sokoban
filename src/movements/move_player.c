@@ -27,18 +27,6 @@ void set_initial_player_pos(char **map, pos_t *player_pos, char player_symbol)
     }
 }
 
-void check_player_move(int key, map_t *map, pos_t *player_pos)
-{
-    move_t *direction = NULL;
-
-    if (!is_movement_key(key))
-        return;
-    direction = get_move_by_key(key);
-    if (can_move(map, player_pos, direction))
-        move_player(map->map, player_pos, direction);
-    free(direction);
-}
-
 void move_player(char **map, pos_t *player_pos, move_t *direction)
 {
     char target_char = 0;
