@@ -13,11 +13,7 @@
 #include "pos.h"
 #include "move.h"
 #include "my_sokoban.h"
-    #include <unistd.h>
-move_t *get_move_by_key(int key);
-bool can_move(map_t *map, pos_t *pos, move_t *move);
-bool is_off_limits(pos_t *pos, map_t *map);
-bool is_movement_key(int key);
+#include "move.h"
 
 pos_t *get_initial_player_pos(char **map, char player_symbol)
 {

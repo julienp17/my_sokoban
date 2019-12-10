@@ -11,6 +11,7 @@
 #include "map.h"
 #include "my_sokoban.h"
 #include "pos.h"
+#include "move.h"
 
 void play_game(map_t *map)
 {
@@ -37,8 +38,7 @@ void game_loop(map_t *map)
     while (key != 'q' && key != 27) {
         display_map(map, player_pos);
         key = getch();
-        if (is_movement_key(key))
-            check_player_move(key, map, player_pos);
+        check_player_move(key, map, player_pos);
     }
     free(player_pos);
 }

@@ -6,6 +6,7 @@
 */
 
 #include <stddef.h>
+#include <stdlib.h>
 #include "usage.h"
 #include "file_manipulation.h"
 #include "map.h"
