@@ -14,7 +14,7 @@
         int key;
         int x_offset;
         int y_offset;
-        void (*movement)(pos_t *);
+        void (*move)(pos_t *);
     } move_t;
 
     void move_left(pos_t *pos);
