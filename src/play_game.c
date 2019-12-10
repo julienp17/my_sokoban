@@ -11,11 +11,6 @@
 #include "my_sokoban.h"
 #include "pos.h"
 
-void init_game(void);
-void display_window(map_t *map);
-void game_loop(map_t *map);
-pos_t *get_initial_player_pos(char **map, char player_symbol);
-
 void play_game(map_t *map)
 {
     init_game();
@@ -54,20 +49,6 @@ void game_loop(map_t *map)
             player_pos->y--;
     }
     return;
-}
-
-pos_t *get_initial_player_pos(char **map, char player_symbol)
-{
-    pos_t *player_pos = malloc(sizeof(pos_t *));
-
-    for (unsigned int i = 0 ; map[i] ; i++) {
-        for (unsigned int j = 0 ; map[i][j] ; j++)
-            if (map[i][j] == player_symbol) {
-                player_pos->y = i;
-                player_pos->x = j;
-            }
-    }
-    return (player_pos);
 }
 
 void display_window(map_t *map)
