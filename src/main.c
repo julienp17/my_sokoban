@@ -24,7 +24,7 @@ int main(int ac, char **av)
         return (MY_EXIT_FAILURE);
     if ((map = get_map_from_file(av[1])) == NULL)
         return (MY_EXIT_FAILURE);
-    play_game(map);
+    exit_code = play_game(map);
     free(map);
-    return (MY_EXIT_SUCCESS);
+    return (exit_code);
 }
