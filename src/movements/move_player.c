@@ -15,7 +15,7 @@
 #include "my_sokoban.h"
 #include "move.h"
 
-void get_initial_player_pos(char **map, pos_t *player_pos, char player_symbol)
+void set_initial_player_pos(char **map, pos_t *player_pos, char player_symbol)
 {
     for (unsigned int i = 0 ; map[i] ; i++) {
         for (unsigned int j = 0 ; map[i][j] ; j++) {

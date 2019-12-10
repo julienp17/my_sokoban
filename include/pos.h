@@ -13,5 +13,5 @@
         unsigned int y;
     } pos_t;
 
-    void get_initial_player_pos(char **map, pos_t *, char player_symbol);
+    void set_initial_player_pos(char **map, pos_t *, char player_symbol);
 #endif
