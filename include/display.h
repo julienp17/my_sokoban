@@ -13,4 +13,5 @@
 
     void display_map(map_t *map, pos_t *player_pos);
     void display_cursor_as_player(pos_t *player_pos);
+    void display_center_message(char const *message);
 #endif
