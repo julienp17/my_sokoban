@@ -6,6 +6,7 @@
 */
 
 #include <stdbool.h>
+#include <stdlib.h>
 #include <curses.h>
 #include "my_sokoban.h"
 #include "map.h"
@@ -14,7 +15,7 @@
 
 bool can_move(map_t *map, pos_t *pos, move_t *move)
 {
-    pos_t *target = pos;
+    pos_t *target = malloc(sizeof(*target));
     char target_char = 0;
 
     target->x = pos->x + move->x_offset;
@@ -26,6 +27,7 @@ bool can_move(map_t *map, pos_t *pos, move_t *move)
         return (FALSE);
     else if (target_char == BOX_CHAR)
         return ((can_move(map, target, move)) ? TRUE : FALSE);
+    free(target);
     return (TRUE);
 }
 
@@ -47,9 +49,9 @@ bool is_movement_key(int key)
 
 bool is_off_limits(pos_t *pos, map_t *map)
 {
-    if (pos->x == 0 || pos->x > map->nb_cols - 1)
+    if (pos->x > map->nb_cols - 1)
         return (TRUE);
-    if (pos->y == 0 || pos->y > map->nb_rows - 1)
+    if (pos->y > map->nb_rows - 1)
         return (TRUE);
     return (FALSE);
 }
