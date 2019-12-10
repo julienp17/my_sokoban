@@ -14,11 +14,17 @@
 #include "pos.h"
 #include "move.h"
 #include "usage.h"
-
+#include "my.h"
+                            #include <stdio.h>
 void play_game(map_t *map)
 {
+    pos_t *player_pos = malloc(sizeof(*player_pos));
+    char **org_map = my_strdup_2D_array(map->map);
+
+    get_initial_player_pos(map->map, player_pos, PLAYER_CHAR);
+    map->map[player_pos->y][player_pos->x] = SPACE_CHAR;
     init_game();
-    game_loop(map);
+    game_loop(map, org_map, player_pos);
     endwin();
 }
 
@@ -31,12 +37,10 @@ void init_game(void)
     curs_set(0);
 }
 
-void game_loop(map_t *map)
+void game_loop(map_t *map, char **org_map, pos_t *player_pos)
 {
-    pos_t *player_pos = get_initial_player_pos(map->map, PLAYER_CHAR);
     int key = 0;
 
-    map->map[player_pos->y][player_pos->x] = SPACE_CHAR;
     while (key != 'q' && key != 27) {
         if (terminal_is_too_small(map)) {
             clear();
@@ -46,7 +50,17 @@ void game_loop(map_t *map)
             display_map(map, player_pos);
             key = getch();
             check_player_move(key, map, player_pos);
+            check_reset(key, map, org_map, player_pos);
         }
     }
     free(player_pos);
+}
+
+void check_reset(int key, map_t *map, char **org_map, pos_t *player_pos)
+{
+    if (key == RESET_KEY) {
+        map->map = my_strcpy_2D_array(map->map, (char const **)org_map);
+        get_initial_player_pos(org_map, player_pos, PLAYER_CHAR);
+        map->map[player_pos->y][player_pos->x] = SPACE_CHAR;
+    }
 }
