@@ -53,7 +53,6 @@ void game_loop(map_t *map)
         if (ch == KEY_UP && player_pos->y > 0)
             player_pos->y--;
         clear();
-        refresh();
     }
     return;
 }
