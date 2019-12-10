@@ -17,7 +17,7 @@
     #define TARGET_CHAR     'O'
     #define SPACE_CHAR      ' '
 
+    void play_game(map_t *map);
     void init_game(void);
-    void display_map(map_t *map, pos_t *player_pos);
     void game_loop(map_t *map);
 #endif
