@@ -14,9 +14,9 @@
         int key;
         int x_offset;
         int y_offset;
-        void (*move)(pos_t *);
     } move_t;
 
+    move_t *get_move_by_key(int key);
     void move_left(pos_t *pos);
     void move_right(pos_t *pos);
     void move_up(pos_t *pos);
