@@ -15,17 +15,22 @@
 #include "move.h"
 #include "usage.h"
 #include "my.h"
-                            #include <stdio.h>
-void play_game(map_t *map)
+
+bool no_boxes_can_be_moved(map_t *map);
+unsigned int get_possible_moves(map_t *map, pos_t *pos);
+
+int play_game(map_t *map)
 {
+    int exit_code = 0;
     pos_t *player_pos = malloc(sizeof(*player_pos));
     char **org_map = my_strdup_2D_array(map->map);
 
-    get_initial_player_pos(map->map, player_pos, PLAYER_CHAR);
+    set_initial_player_pos(map->map, player_pos, PLAYER_CHAR);
     map->map[player_pos->y][player_pos->x] = SPACE_CHAR;
     init_game();
-    game_loop(map, org_map, player_pos);
+    exit_code = game_loop(map, org_map, player_pos);
     endwin();
+    return (exit_code);
 }
 
 void init_game(void)
@@ -37,11 +42,11 @@ void init_game(void)
     curs_set(0);
 }
 
-void game_loop(map_t *map, char **org_map, pos_t *player_pos)
+int game_loop(map_t *map, char **org_map, pos_t *player_pos)
 {
     int key = 0;
 
-    while (key != 'q' && key != 27) {
+    while (game_should_go_on(key, map)) {
         if (terminal_is_too_small(map)) {
             clear();
             display_center_message(TERM_TOO_SMALL_MSG);
@@ -54,13 +59,14 @@ void game_loop(map_t *map, char **org_map, pos_t *player_pos)
         }
     }
     free(player_pos);
+    return (no_boxes_can_be_moved(map) ? 1 : 0);
 }
 
 void check_reset(int key, map_t *map, char **org_map, pos_t *player_pos)
 {
     if (key == RESET_KEY) {
         map->map = my_strcpy_2D_array(map->map, (char const **)org_map);
-        get_initial_player_pos(org_map, player_pos, PLAYER_CHAR);
+        set_initial_player_pos(org_map, player_pos, PLAYER_CHAR);
         map->map[player_pos->y][player_pos->x] = SPACE_CHAR;
     }
 }
