@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <curses.h>
+#include "display.h"
 #include "map.h"
 #include "my_sokoban.h"
 #include "pos.h"
