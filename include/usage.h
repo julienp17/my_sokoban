@@ -23,6 +23,7 @@
     "    map file representing the warehouse map, containing '#' for walls,\n" \
     "\t'P' for the player, 'X' for boxes, and '0' for storage locations.\n"
     #define TERM_TOO_SMALL_MSG  "Terminal too small, please resize !"
+    #define UNKNOWN_CHAR_IN_MAP_ERR_MSG "Unknown char in map\n"
 
     int check_args(int ac, char **av);
     bool terminal_is_too_small(map_t *map);

@@ -14,6 +14,7 @@
 #include "file_manipulation.h"
 #include "my.h"
 #include "map.h"
+#include "usage.h"
 
 map_t *get_map_from_file(char *filepath)
 {
@@ -84,8 +85,10 @@ bool is_valid_map(char const *file_buffer)
         j = 0;
         while (j < len && file_buffer[i] != allowed_chars[j])
             j++;
-        if (j >= len)
+        if (j >= len) {
+            my_puterr(UNKNOWN_CHAR_IN_MAP_ERR_MSG);
             return (false);
+        }
         i++;
     }
     return (true);
