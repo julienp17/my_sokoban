@@ -12,6 +12,7 @@
 #include "map.h"
 #include "pos.h"
 #include "move.h"
+#include "my.h"
 
 static void update_max_moves(map_t *map, pos_t *box_pos,
                             unsigned int *max_moves);
@@ -21,6 +22,8 @@ bool game_should_go_on(int key, map_t *map)
     if (key == QUIT_KEY || key == ESCAPE_KEY)
         return (FALSE);
     if (no_boxes_can_be_moved(map))
+        return (FALSE);
+    if (my_count_char_2D_array((char const **)(map->map), TARGET_CHAR) == 0)
         return (FALSE);
     return (TRUE);
 }
