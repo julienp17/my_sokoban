@@ -5,6 +5,8 @@
 ** Usage file for my_sokoban
 */
 
+#include <stdbool.h>
+#include <curses.h>
 #include "usage.h"
 #include "my.h"
 
@@ -20,4 +22,13 @@ int check_args(int ac, char **av)
         return (MY_EXIT_OPTION);
     }
     return (MY_EXIT_SUCCESS);
+}
+
+bool terminal_is_too_small(map_t *map)
+{
+    unsigned int row = 0;
+    unsigned int col = 0;
+
+    getmaxyx(stdscr, row, col);
+    return ((row < map->nb_rows || col < map->nb_cols) ? TRUE : FALSE);
 }

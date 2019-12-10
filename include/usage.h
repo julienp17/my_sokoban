@@ -8,6 +8,9 @@
 #ifndef USAGE_H_
     #define USAGE_H_
 
+    #include <stdbool.h>
+    #include "map.h"
+
     #define MY_EXIT_SUCCESS       0
     #define MY_EXIT_OPTION        192
     #define MY_EXIT_FAILURE       84
@@ -19,6 +22,8 @@
     "DESCRIPTION\n"                                                            \
     "    map file representing the warehouse map, containing '#' for walls,\n" \
     "\t'P' for the player, 'X' for boxes, and '0' for storage locations.\n"
+    #define TERM_TOO_SMALL_MSG  "Terminal too small, please resize !"
 
     int check_args(int ac, char **av);
+    bool terminal_is_too_small(map_t *map);
 #endif
