@@ -38,7 +38,7 @@ bool can_move(map_t *map, pos_t *pos, move_t *move)
     if (target_char == WALL_CHAR)
         return (FALSE);
     else if (target_char == BOX_CHAR)
-        return ((can_move(map, target, move)) ? TRUE : FALSE);
+        return ((can_move(map, target, move)));
     free(target);
     return (TRUE);
 }
