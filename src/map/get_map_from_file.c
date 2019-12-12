@@ -28,13 +28,13 @@ map_t *get_map_from_file(char *filepath)
 map_t *create_map_from_file_buffer(char *file_buffer)
 {
     map_t *map = malloc(sizeof(*map));
-    map->nb_cols = my_count_until_sep(file_buffer, '\n');
-    map->nb_rows = my_count_char(file_buffer, '\n') + 1;
-    map->map = malloc(sizeof(char *) * (map->nb_rows + 1));
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int k = 0;
 
+    map->nb_rows = my_count_char(file_buffer, '\n') + 1;
+    map->nb_cols = my_count_until_sep(file_buffer, '\n');
+    map->map = malloc(sizeof(char *) * (map->nb_rows + 1));
     for (i = 0 ; i < map->nb_rows ; i++, k++) {
         map->map[i] = malloc(sizeof(char) * (map->nb_cols + 1));
         for (j = 0 ; j < map->nb_cols ; j++, k++) {
