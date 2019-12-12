@@ -29,6 +29,7 @@
     void check_reset(int key, map_t *map, char **org_map, pos_t *player_pos);
 
     bool game_should_go_on(int key, map_t *map);
-    bool no_boxes_can_be_moved(map_t *map);
+    bool boxes_can_be_moved(map_t *map);
+    bool check_box_can_move(map_t *map, pos_t *pos);
     unsigned int get_box_possible_moves(map_t *map, pos_t *pos);
 #endif
