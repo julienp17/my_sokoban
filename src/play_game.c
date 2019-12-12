@@ -16,9 +16,6 @@
 #include "usage.h"
 #include "my.h"
 
-bool no_boxes_can_be_moved(map_t *map);
-unsigned int get_possible_moves(map_t *map, pos_t *pos);
-
 int play_game(map_t *map)
 {
     int exit_code = 0;
@@ -59,7 +56,7 @@ int game_loop(map_t *map, char **org_map, pos_t *player_pos)
         }
     }
     free(player_pos);
-    return (no_boxes_can_be_moved(map) ? 1 : 0);
+    return (!boxes_can_be_moved(map));
 }
 
 void check_reset(int key, map_t *map, char **org_map, pos_t *player_pos)

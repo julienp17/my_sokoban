@@ -18,7 +18,7 @@ SRC_F 		=	usage.c \
 				play_game.c \
 				game_logic.c \
 				display.c \
-				map/get_map_from_file.c \
+				get_map_from_file.c \
 				movements/get_move.c \
 				movements/move_player.c \
 				movements/check_move.c
