@@ -14,54 +14,49 @@
 #include "move.h"
 #include "my.h"
 
-static void update_max_moves(map_t *map, pos_t *box_pos,
-                            unsigned int *max_moves);
-
 bool game_should_go_on(int key, map_t *map)
 {
     if (key == QUIT_KEY || key == ESCAPE_KEY)
         return (FALSE);
-    if (no_boxes_can_be_moved(map))
+    if (!boxes_can_be_moved(map))
         return (FALSE);
     if (my_count_char_2D_array((char const **)(map->map), TARGET_CHAR) == 0)
         return (FALSE);
     return (TRUE);
 }
 
-bool no_boxes_can_be_moved(map_t *map)
+bool boxes_can_be_moved(map_t *map)
 {
     pos_t *box_pos = malloc(sizeof(*box_pos));
-    unsigned int max_moves = 0;
+    bool can_move = false;
 
-    for (unsigned int row = 0 ; map->map[row] ; row++) {
-        for (unsigned int col = 0 ; map->map[row][col] ; col++) {
+    for (unsigned int row = 0 ; map->map[row] && !can_move; row++) {
+        for (unsigned int col = 0 ; map->map[row][col] && !can_move; col++) {
             if (map->map[row][col] == BOX_CHAR) {
                 box_pos->y = row;
                 box_pos->x = col;
-                update_max_moves(map, box_pos, &max_moves);
+                can_move = check_box_can_move(map, box_pos);
             }
         }
     }
     free(box_pos);
-    return ((max_moves <= 2) ? TRUE : FALSE);
+    return (can_move);
 }
 
-static void update_max_moves(map_t *map, pos_t *box_pos,
-                            unsigned int *max_moves)
+bool check_box_can_move(map_t *map, pos_t *pos)
 {
-    unsigned int moves = get_box_possible_moves(map, box_pos);
+    int x_keys[] = {KEY_LEFT, KEY_RIGHT, 0};
+    int y_keys[] = {KEY_UP, KEY_DOWN, 0};
+    int x_possible_moves = 0;
+    int y_possible_moves = 0;
 
-    if (moves > (*max_moves))
-        (*max_moves) = moves;
-}
-
-unsigned int get_box_possible_moves(map_t *map, pos_t *pos)
-{
-    int keys[] = {KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, 0};
-    unsigned int possible_moves = 0;
-
-    for (unsigned int i = 0 ; keys[i] != 0 ; i++)
-        if (can_move(map, pos, get_move_by_key(keys[i])))
-            possible_moves++;
-    return (possible_moves);
+    for (unsigned int i = 0 ; x_keys[i] != 0 ; i++) {
+        if (can_move(map, pos, get_move_by_key(x_keys[i])))
+            x_possible_moves += 1;
+        if (can_move(map, pos, get_move_by_key(y_keys[i])))
+            y_possible_moves += 1;
+    }
+    if (x_possible_moves <= 1 && y_possible_moves <= 1)
+        return (FALSE);
+    return (TRUE);
 }
