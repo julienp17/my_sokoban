@@ -19,30 +19,16 @@
 map_t *get_map_from_file(char *filepath)
 {
     char *file_buffer = get_file_buffer(filepath);
+    map_t *map = NULL;
 
     if (!file_buffer || !is_valid_map(file_buffer))
         return (NULL);
-    return (create_map_from_file_buffer(file_buffer));
-}
-
-map_t *create_map_from_file_buffer(char *file_buffer)
-{
-    map_t *map = malloc(sizeof(*map));
-    unsigned int i = 0;
-    unsigned int j = 0;
-    unsigned int k = 0;
-
-    map->nb_rows = my_count_char(file_buffer, '\n') + 1;
-    map->nb_cols = my_count_until_sep(file_buffer, '\n');
-    map->map = malloc(sizeof(char *) * (map->nb_rows + 1));
-    for (i = 0 ; i < map->nb_rows ; i++, k++) {
-        map->map[i] = malloc(sizeof(char) * (map->nb_cols + 1));
-        for (j = 0 ; j < map->nb_cols ; j++, k++) {
-            map->map[i][j] = file_buffer[k];
-        }
-        map->map[i][j] = '\0';
-    }
-    map->map[i] = NULL;
+    map = malloc(sizeof(*map));
+    map->map = my_str_to_word_array(file_buffer, '\n');
+    map->org_map = my_strdup_str_array(map->map);
+    map->max_row = my_str_array_len(map->map);
+    map->max_col = my_get_max_word_len_str_array(map->map);
+    free(file_buffer);
     return (map);
 }
 
