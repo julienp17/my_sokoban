@@ -7,16 +7,17 @@
 
 CC 			= 	gcc
 
-SRC			=	my_putchar.c              \
-				my_putstr.c               \
-				my_puterr.c               \
-				my_strcmp.c               \
-				my_count_char.c           \
-				my_count_char_str_array.c \
-				my_count_until_sep.c      \
-				my_strlen.c               \
-				my_strdup_str_array.c     \
-				my_strcpy_str_array.c     \
+SRC			=	my_putchar.c                    \
+				my_putstr.c                     \
+				my_puterr.c                     \
+				my_strcmp.c                     \
+				my_count_char.c                 \
+				my_count_char_str_array.c       \
+				my_count_until_sep.c            \
+				my_strlen.c                     \
+				my_strdup_str_array.c           \
+				my_strcpy_str_array.c           \
+				my_get_max_word_len_str_array.c \
 
 OBJ			=	$(SRC:.c=.o)
 

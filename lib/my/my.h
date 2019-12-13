@@ -17,6 +17,7 @@
     unsigned int my_count_char_str_array(char const **arr, char const to_count);
     unsigned int my_count_until_sep(char const *, char const);
     unsigned int my_strlen(char const *str);
+    unsigned int my_get_max_word_len_str_array(char **arr);
 
     char **my_strdup_str_array(char **array);
     char **my_strcpy_str_array(char **dest, char **src);
