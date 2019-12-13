@@ -8,7 +8,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-char **my_strdup_2D_array(char **array)
+char **my_strdup_str_array(char **array)
 {
     unsigned int row = 0;
     unsigned int col = 0;

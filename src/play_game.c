@@ -20,7 +20,7 @@ int play_game(map_t *map)
 {
     int exit_code = 0;
     pos_t *player_pos = malloc(sizeof(*player_pos));
-    char **org_map = my_strdup_2D_array(map->map);
+    char **org_map = my_strdup_str_array(map->map);
 
     set_initial_player_pos(map->map, player_pos, PLAYER_CHAR);
     map->map[player_pos->y][player_pos->x] = SPACE_CHAR;
@@ -62,7 +62,7 @@ int game_loop(map_t *map, char **org_map, pos_t *player_pos)
 void check_reset(int key, map_t *map, char **org_map, pos_t *player_pos)
 {
     if (key == RESET_KEY) {
-        map->map = my_strcpy_2D_array(map->map, (char const **)org_map);
+        map->map = my_strcpy_str_array(map->map, (char const **)org_map);
         set_initial_player_pos(org_map, player_pos, PLAYER_CHAR);
         map->map[player_pos->y][player_pos->x] = SPACE_CHAR;
     }
