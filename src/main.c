@@ -26,5 +26,5 @@ int main(int ac, char **av)
         return (MY_EXIT_FAILURE);
     exit_code = play_game(map);
     free(map);
-    return (exit_code);
+    exit(exit_code);
 }
