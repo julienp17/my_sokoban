@@ -7,7 +7,7 @@
 
 #include <stddef.h>
 
-char **my_strcpy_2D_array(char **dest, char const **src)
+char **my_strcpy_str_array(char **dest, char const **src)
 {
     unsigned int row = 0;
     unsigned int col = 0;

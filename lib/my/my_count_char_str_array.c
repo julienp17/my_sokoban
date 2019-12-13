@@ -5,7 +5,7 @@
 ** Count the number of times the given char appears in a 2d array
 */
 
-unsigned int my_count_char_2D_array(char const **str, char const to_count)
+unsigned int my_count_char_str_array(char const **str, char const to_count)
 {
     unsigned int count = 0;
 

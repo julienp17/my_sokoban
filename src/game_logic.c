@@ -20,7 +20,7 @@ bool game_should_go_on(int key, map_t *map)
         return (FALSE);
     if (!boxes_can_be_moved(map))
         return (FALSE);
-    if (my_count_char_2D_array((char const **)(map->map), TARGET_CHAR) == 0)
+    if (my_count_char_str_array((char const **)(map->map), TARGET_CHAR) == 0)
         return (FALSE);
     return (TRUE);
 }

@@ -14,10 +14,10 @@
 
     int my_strcmp(char const *, char const *);
     unsigned int my_count_char(char const *, char const);
-    unsigned int my_count_char_2D_array(char const **arr, char const to_count);
+    unsigned int my_count_char_str_array(char const **arr, char const to_count);
     unsigned int my_count_until_sep(char const *, char const);
     unsigned int my_strlen(char const *str);
 
-    char **my_strdup_2D_array(char **array);
-    char **my_strcpy_2D_array(char **dest, char const **src);
+    char **my_strdup_str_array(char **array);
+    char **my_strcpy_str_array(char **dest, char const **src);
 #endif

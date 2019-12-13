@@ -51,7 +51,7 @@ $(NAME):	makelib $(OBJ) $(OBJ_M)
 makelib:
 	make -C ./lib/my/ all
 
-tests_run: clean $(OBJ) $(OBJ_UT)
+tests_run: clean makelib $(OBJ) $(OBJ_UT)
 	echo -e "\e[1;32mCompiling $(NAME_UT) binary... \e[0m"
 	$(CC) -o $(NAME_UT) $(SRC) $(SRC_UT) $(CFLAGS) $(LDFLAGS_UT)
 	./$(NAME_UT)
