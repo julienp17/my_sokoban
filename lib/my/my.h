@@ -19,5 +19,5 @@
     unsigned int my_strlen(char const *str);
 
     char **my_strdup_str_array(char **array);
-    char **my_strcpy_str_array(char **dest, char const **src);
+    char **my_strcpy_str_array(char **dest, char **src);
 #endif
