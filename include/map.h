@@ -10,10 +10,10 @@
 
     typedef struct map {
         char **map;
-        unsigned int nb_cols;
-        unsigned int nb_rows;
+        char **org_map;
+        unsigned int max_row;
+        unsigned int max_col;
     } map_t;
 
     map_t *get_map_from_file(char *filepath);
-    map_t *create_map_from_file_buffer(char *file_buffer);
 #endif
