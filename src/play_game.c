@@ -56,7 +56,10 @@ int game_loop(map_t *map, char **org_map, pos_t *player_pos)
         }
     }
     free(player_pos);
-    return (!boxes_can_be_moved(map));
+    if (key == QUIT_KEY || key == ESCAPE_KEY ||
+            my_count_char_str_array((char const **)map->map, TARGET_CHAR) == 0)
+        return (0);
+    return (1);
 }
 
 void check_reset(int key, map_t *map, char **org_map, pos_t *player_pos)
