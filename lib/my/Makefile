@@ -19,6 +19,7 @@ SRC			=	my_putchar.c                    \
 				my_strcpy_str_array.c           \
 				my_get_max_word_len_str_array.c \
 				my_str_to_word_array.c          \
+				my_str_array_len.c              \
 
 OBJ			=	$(SRC:.c=.o)
 
