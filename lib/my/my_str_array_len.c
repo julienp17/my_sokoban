@@ -9,7 +9,7 @@ unsigned int my_str_array_len(char **arr)
 {
     unsigned int len = 0;
 
-    while (arr[len]);
+    while (arr[len])
         len++;
     return (len);
 }
