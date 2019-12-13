@@ -35,7 +35,7 @@ bool boxes_can_be_moved(map_t *map)
             if (map->map[row][col] == BOX_CHAR) {
                 box_pos->y = row;
                 box_pos->x = col;
-                can_move = check_box_can_move(map, box_pos);
+                can_move = check_box_possible_moves(map, box_pos);
             }
         }
     }
@@ -43,7 +43,7 @@ bool boxes_can_be_moved(map_t *map)
     return (can_move);
 }
 
-bool check_box_can_move(map_t *map, pos_t *pos)
+bool check_box_possible_moves(map_t *map, pos_t *pos)
 {
     int x_keys[] = {KEY_LEFT, KEY_RIGHT, 0};
     int y_keys[] = {KEY_UP, KEY_DOWN, 0};
@@ -51,9 +51,9 @@ bool check_box_can_move(map_t *map, pos_t *pos)
     int y_possible_moves = 0;
 
     for (unsigned int i = 0 ; x_keys[i] != 0 ; i++) {
-        if (can_move(map, pos, get_move_by_key(x_keys[i])))
+        if (box_can_move(map, pos, get_move_by_key(x_keys[i])))
             x_possible_moves += 1;
-        if (can_move(map, pos, get_move_by_key(y_keys[i])))
+        if (box_can_move(map, pos, get_move_by_key(y_keys[i])))
             y_possible_moves += 1;
     }
     if (x_possible_moves <= 1 && y_possible_moves <= 1)
