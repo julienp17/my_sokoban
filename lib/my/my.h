@@ -21,4 +21,5 @@
 
     char **my_strdup_str_array(char **array);
     char **my_strcpy_str_array(char **dest, char **src);
+    char **my_str_to_word_array(char *file_buffer, char const sep);
 #endif
