@@ -30,5 +30,5 @@ bool terminal_is_too_small(map_t *map)
     unsigned int col = 0;
 
     getmaxyx(stdscr, row, col);
-    return ((row < map->nb_rows || col < map->nb_cols) ? TRUE : FALSE);
+    return (row < map->max_row || col < map->max_col);
 }
