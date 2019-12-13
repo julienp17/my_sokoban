@@ -20,12 +20,27 @@ void check_player_move(int key, map_t *map, pos_t *player_pos)
     if (!is_movement_key(key))
         return;
     direction = get_move_by_key(key);
-    if (can_move(map, player_pos, direction))
+    if (player_can_move(map, player_pos, direction))
         move_player(map->map, player_pos, direction);
     free(direction);
 }
 
-bool can_move(map_t *map, pos_t *pos, move_t *move)
+bool box_can_move(map_t *map, pos_t *pos, move_t *move)
+{
+    pos_t *target = malloc(sizeof(*target));
+    char target_char = 0;
+
+    target->x = pos->x + move->x_offset;
+    target->y = pos->y + move->y_offset;
+    target_char = map->map[target->y][target->x];
+    if (is_off_limits(target, map) || target_char == WALL_CHAR
+            || target_char == BOX_CHAR)
+        return (FALSE);
+    free(target);
+    return (TRUE);
+}
+
+bool player_can_move(map_t *map, pos_t *pos, move_t *move)
 {
     pos_t *target = malloc(sizeof(*target));
     char target_char = 0;
@@ -38,7 +53,7 @@ bool can_move(map_t *map, pos_t *pos, move_t *move)
     if (target_char == WALL_CHAR)
         return (FALSE);
     else if (target_char == BOX_CHAR)
-        return ((can_move(map, target, move)));
+        return (box_can_move(map, target, move));
     free(target);
     return (TRUE);
 }
