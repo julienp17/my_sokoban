@@ -40,6 +40,20 @@ map_t *map_create_from_file_buffer(char *file_buffer)
     return (map);
 }
 
+void map_destroy(map_t *map)
+{
+    for (unsigned int i = 0 ; map->boxes[i] ; i++)
+        free(map->boxes[i]);
+    for (unsigned int i = 0 ; map->storage[i] ; i++)
+        free(map->storage[i]);
+    for (unsigned int i = 0 ; map->map[i] ; i++) {
+        free(map->map[i]);
+        free(map->org_map[i]);
+    }
+    free(map->player);
+    free(map);
+}
+
 bool is_valid_map(char const *file_buffer)
 {
     char const allowed_chars[] = "\n #XOP";
