@@ -16,12 +16,15 @@ OBJ 		= 	$(SRC:.c=.o)
 SRC_D 		= 	src/
 SRC_F 		=	usage.c \
 				play_game.c \
-				game_logic.c \
 				display.c \
-				get_map_from_file.c \
-				movements/get_move.c \
-				movements/move_player.c \
-				movements/check_move.c
+				end_conditions.c \
+				file_manipulation/get_file_buffer.c \
+				file_manipulation/get_map_from_file.c \
+				movements/can_move.c \
+				movements/move_keys.c \
+				movements/move_player.c   \
+				positions/get_initial_positions.c \
+				positions/pos.c \
 
 SRC_UT   	=	$(addprefix $(SRC_UT_D), $(SRC_UT_F))
 OBJ_UT 	 	=	$(SRC_UT:.c=.o)
