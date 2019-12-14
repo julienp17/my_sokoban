@@ -16,7 +16,7 @@
     #define WALL_CHAR       '#'
     #define PLAYER_CHAR     'P'
     #define BOX_CHAR        'X'
-    #define TARGET_CHAR     'O'
+    #define STORAGE_CHAR    'O'
     #define SPACE_CHAR      ' '
 
     #define RESET_KEY       ' '
@@ -31,11 +31,12 @@
 
     void display_map(map_t *map);
     void display_cursor_as_player(pos_t *player_pos);
-    void display_boxes(pos_t **boxes);
+    void display_entities(pos_t **boxes, char const symbol);
     void display_center_message(char const *message);
 
     int game_should_go_on(int key, map_t *map);
-    bool boxes_can_be_moved(map_t *map);
-    bool check_box_possible_moves(map_t *map, pos_t *pos);
-    unsigned int get_box_possible_moves(map_t *map, pos_t *pos);
+    bool all_storage_are_filled(pos_t **storage, pos_t **boxes);
+    bool storage_is_filled(pos_t *storage_pos, pos_t **boxes);
+    bool all_boxes_can_be_moved(map_t *map);
+    bool box_can_move(map_t *map, pos_t *pos);
 #endif
