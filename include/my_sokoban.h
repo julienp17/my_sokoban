@@ -25,10 +25,16 @@
 
     int play_game(map_t *map);
     void init_game(void);
-    int game_loop(map_t *map, char **org_map, pos_t *player_pos);
-    void check_reset(int key, map_t *map, char **org_map, pos_t *player_pos);
+    int game_loop(map_t *map);
+    void check_player_move(int key, map_t *map);
+    void check_reset(int key, map_t *map);
 
-    bool game_should_go_on(int key, map_t *map);
+    void display_map(map_t *map);
+    void display_cursor_as_player(pos_t *player_pos);
+    void display_boxes(pos_t **boxes);
+    void display_center_message(char const *message);
+
+    int game_should_go_on(int key, map_t *map);
     bool boxes_can_be_moved(map_t *map);
     bool check_box_possible_moves(map_t *map, pos_t *pos);
     unsigned int get_box_possible_moves(map_t *map, pos_t *pos);
