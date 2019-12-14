@@ -15,13 +15,15 @@
 #include "my_sokoban.h"
 #include "move.h"
 
-void move_player(pos_t *player, pos_t **boxes, move_t *direction)
+void move_player(map_t *map, move_t *direction)
 {
     pos_t *box_pos = NULL;
 
-    player->x += direction->x_offset;
-    player->y += direction->y_offset;
-    box_pos = get_box_pos(player, boxes);
-    if (box_pos)
-        move_player(box_pos, boxes, direction);
+    map->player->x += direction->x_offset;
+    map->player->y += direction->y_offset;
+    box_pos = get_box_pos(map->player, map->boxes);
+    if (box_pos) {
+        box_pos->x += direction->x_offset;
+        box_pos->y += direction->y_offset;
+    }
 }
