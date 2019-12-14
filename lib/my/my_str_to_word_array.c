@@ -4,7 +4,7 @@
 ** File description:
 ** Returns a word array with sep not included
 */
-#include <stdio.h>
+
 #include <stddef.h>
 #include <stdlib.h>
 #include "my.h"
@@ -19,7 +19,7 @@ char **my_str_to_word_array(char *str, char const sep)
     char **arr = malloc(sizeof(char *) * (nb_rows + 1));
 
     for (i = 0 ; i < nb_rows ; i = i + 1, k = k + 1) {
-        nb_cols = my_count_until_sep(str, sep);
+        nb_cols = my_count_until_sep(str + k, sep);
         arr[i] = malloc(sizeof(char) * (nb_cols + 1));
         for (j = 0 ; j < nb_cols ; j = j + 1, k = k + 1)
             arr[i][j] = str[k];
