@@ -8,10 +8,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <sys/stat.h>
 #include "file_manipulation.h"
+#include "my_sokoban.h"
 #include "my.h"
 #include "map.h"
 #include "usage.h"
@@ -23,41 +21,22 @@ map_t *get_map_from_file(char *filepath)
 
     if (!file_buffer || !is_valid_map(file_buffer))
         return (NULL);
-    map = malloc(sizeof(*map));
-    map->map = my_str_to_word_array(file_buffer, '\n');
-    map->org_map = my_strdup_str_array(map->map);
-    map->max_row = my_str_array_len(map->map);
-    map->max_col = my_get_max_word_len_str_array(map->map);
+    map = map_create_from_file_buffer(file_buffer);
     free(file_buffer);
     return (map);
 }
 
-char *get_file_buffer(char *filepath)
+map_t *map_create_from_file_buffer(char *file_buffer)
 {
-    int fd = 0;
-    unsigned int file_size = get_file_size(filepath);
-    char *buffer = malloc(sizeof(char) * (file_size + 1));
+    map_t *map = malloc(sizeof(*map));
 
-    if ((fd = open(filepath, O_RDONLY)) == -1) {
-        my_puterr(OPEN_FAILURE_MSG);
-        return (NULL);
-    }
-    if (read(fd, buffer, file_size) == -1) {
-        my_puterr(READ_FAILURE_MSG);
-        return (NULL);
-    }
-    buffer[file_size] = '\0';
-    close(fd);
-    return (buffer);
-}
-
-unsigned int get_file_size(char const *filepath)
-{
-    struct stat stats;
-
-    if (stat(filepath, &stats) != 0)
-        return (-1);
-    return (stats.st_size);
+    map->map = my_str_to_word_array(file_buffer, '\n');
+    map->org_map = my_strdup_str_array(map->map);
+    map->max_row = my_str_array_len(map->map);
+    map->max_col = my_get_max_word_len_str_array(map->map);
+    map->player = get_initial_player_pos(map->map, PLAYER_CHAR);
+    map->boxes = get_initial_boxes_pos(map->map, BOX_CHAR);
+    return (map);
 }
 
 bool is_valid_map(char const *file_buffer)
