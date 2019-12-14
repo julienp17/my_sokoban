@@ -35,7 +35,8 @@ map_t *map_create_from_file_buffer(char *file_buffer)
     map->max_row = my_str_array_len(map->map);
     map->max_col = my_get_max_word_len_str_array(map->map);
     map->player = get_initial_player_pos(map->map, PLAYER_CHAR);
-    map->boxes = get_initial_boxes_pos(map->map, BOX_CHAR);
+    map->boxes = get_initial_entities_pos(map->map, BOX_CHAR);
+    map->storage = get_initial_entities_pos(map->map, STORAGE_CHAR);
     return (map);
 }
 
