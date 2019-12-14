@@ -16,7 +16,8 @@ void display_map(map_t *map)
         addstr(map->map[i]);
         addstr("\n");
     }
-    display_boxes(map->boxes);
+    display_entities(map->storage, STORAGE_CHAR);
+    display_entities(map->boxes, BOX_CHAR);
     display_cursor_as_player(map->player);
     refresh();
 }
@@ -28,11 +29,11 @@ void display_cursor_as_player(pos_t *player_pos)
     move(player_pos->y, player_pos->x);
 }
 
-void display_boxes(pos_t **boxes)
+void display_entities(pos_t **entities, char const symbol)
 {
-    for (unsigned int i = 0 ; boxes[i] ; i = i + 1) {
-        move(boxes[i]->y, boxes[i]->x);
-        addch(BOX_CHAR);
+    for (unsigned int i = 0 ; entities[i] ; i = i + 1) {
+        move(entities[i]->y, entities[i]->x);
+        addch(symbol);
     }
 }
 
