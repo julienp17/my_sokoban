@@ -22,21 +22,21 @@ pos_t *get_initial_player_pos(char **map, char symbol)
     return (NULL);
 }
 
-pos_t **get_initial_boxes_pos(char **map, char symbol)
+pos_t **get_initial_entities_pos(char **map, char symbol)
 {
-    unsigned int nb_boxes = my_count_char_str_array(map, symbol);
-    pos_t **boxes_pos = malloc(sizeof(*boxes_pos) * (nb_boxes + 1));
-    unsigned int boxes_index = 0;
+    unsigned int nb_entities = my_count_char_str_array(map, symbol);
+    pos_t **entities_pos = malloc(sizeof(*entities_pos) * (nb_entities + 1));
+    unsigned int entities_index = 0;
 
     for (unsigned int i = 0 ; map[i] ; i = i + 1) {
         for (unsigned int j = 0 ; map[i][j] ; j = j + 1) {
             if (map[i][j] == symbol) {
                 map[i][j] = SPACE_CHAR;
-                boxes_pos[boxes_index] = pos_create(j, i);
-                boxes_index++;
+                entities_pos[entities_index] = pos_create(j, i);
+                entities_index++;
             }
         }
     }
-    boxes_pos[boxes_index] = NULL;
-    return (boxes_pos);
+    entities_pos[entities_index] = NULL;
+    return (entities_pos);
 }
