@@ -26,6 +26,8 @@ bool can_move(map_t *map, pos_t *pos, move_t *direction, bool is_player)
     box_pos = get_box_pos(target, map->boxes);
     if (box_pos)
         return ((is_player) ? can_move(map, box_pos, direction, false) : FALSE);
+    if (box_pos)
+        free(box_pos);
     free(target);
     return (TRUE);
 }
