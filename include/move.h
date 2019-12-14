@@ -26,5 +26,4 @@
     bool is_off_limits(pos_t *pos, map_t *map);
 
     void move_player(map_t *map, move_t *direction);
-    void move_box(pos_t *box_pos, pos_t **boxes, move_t *direction);
 #endif
