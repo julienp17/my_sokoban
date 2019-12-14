@@ -29,3 +29,19 @@ move_t *get_move_by_key(int key)
     }
     return (move);
 }
+
+bool is_movement_key(int key)
+{
+    int movement_keys[] = {
+        KEY_LEFT,
+        KEY_RIGHT,
+        KEY_UP,
+        KEY_DOWN,
+        0
+    };
+
+    for (unsigned int i = 0 ; movement_keys[i] ; i++)
+        if (key == movement_keys[i])
+            return (TRUE);
+    return (FALSE);
+}
