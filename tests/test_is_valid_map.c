@@ -7,7 +7,7 @@
 
 #include <stdbool.h>
 #include <criterion/criterion.h>
-#include "file_manipulation.h"
+#include "map.h"
 
 Test(is_valid_map, valid_map)
 {
