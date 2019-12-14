@@ -15,5 +15,4 @@
 
     char *get_file_buffer(char *filepath);
     unsigned int get_file_size(char const *filepath);
-    bool is_valid_map(char const *file_buffer);
 #endif

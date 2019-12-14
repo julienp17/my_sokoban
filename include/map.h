@@ -22,4 +22,6 @@
 
     map_t *get_map_from_file(char *filepath);
     map_t *map_create_from_file_buffer(char *file_buffer);
+    void map_destroy(map_t *map);
+    bool is_valid_map(char const *file_buffer);
 #endif
