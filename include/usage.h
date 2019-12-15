@@ -17,11 +17,11 @@
 
     #define BAD_NB_ARGS_ERR_MSG  "Incorrect numbers of arguments (must be 1)\n"
     #define USAGE                                                              \
-    "Usage\n"                                                                  \
+    "USAGE\n"                                                                  \
     "    ./my_sokoban map\n"                                                   \
     "DESCRIPTION\n"                                                            \
-    "    map file representing the warehouse map, containing '#' for walls, "  \
-    "'P' for the player, 'X' for boxes and '0' for storage locations.\n"
+    "    map  file representing the warehouse map, containing '#' for walls, "  \
+    "'P' for the player, 'X' for boxes and 'O' for storage locations.\n"
     #define TERM_TOO_SMALL_MSG  "Terminal too small, please resize !"
     #define UNKNOWN_CHAR_IN_MAP_ERR_MSG "Unknown char in map\n"
 
