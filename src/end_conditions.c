@@ -15,26 +15,26 @@ int game_should_go_on(int key, map_t *map)
 {
     if (key == QUIT_KEY || key == ESCAPE_KEY)
         return (0);
-    if (all_storage_are_filled(map->storage, map->boxes))
+    if (all_boxes_are_on_storage_location(map->boxes, map->storage))
         return (0);
     if (!all_boxes_can_be_moved(map))
         return (1);
     return (42);
 }
 
-bool all_storage_are_filled(pos_t **storage, pos_t **boxes)
+bool all_boxes_are_on_storage_location(pos_t **boxes, pos_t **storage)
 {
-    bool filled = true;
+    bool is_on_storage_location = true;
 
-    for (unsigned int i = 0 ; storage[i] && filled ; i++)
-        filled = storage_is_filled(storage[i], boxes);
-    return (filled);
+    for (unsigned int i = 0 ; boxes[i] && is_on_storage_location ; i++)
+        is_on_storage_location = box_is_on_storage_location(boxes[i], storage);
+    return (is_on_storage_location);
 }
 
-bool storage_is_filled(pos_t *storage_pos, pos_t **boxes)
+bool box_is_on_storage_location(pos_t *box_pos, pos_t **storage)
 {
-    for (unsigned int i = 0 ; boxes[i] ; i++)
-        if (is_on_same_pos(storage_pos, boxes[i]))
+    for (unsigned int i = 0 ; storage[i] ; i++)
+        if (is_on_same_pos(box_pos, storage[i]))
             return (true);
     return (false);
 }

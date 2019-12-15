@@ -35,8 +35,8 @@
     void display_center_message(char const *message);
 
     int game_should_go_on(int key, map_t *map);
-    bool all_storage_are_filled(pos_t **storage, pos_t **boxes);
-    bool storage_is_filled(pos_t *storage_pos, pos_t **boxes);
+    bool all_boxes_are_on_storage_location(pos_t **boxes, pos_t **storage);
+    bool box_is_on_storage_location(pos_t *box_pos, pos_t **storage);
     bool all_boxes_can_be_moved(map_t *map);
     bool box_can_move(map_t *map, pos_t *pos);
 #endif
